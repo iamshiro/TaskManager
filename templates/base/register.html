@@ -1,0 +1,40 @@
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="{% static "static/css/style.css" %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="body">
+<form class="form" method="POST">
+    {% csrf_token %}
+    <p class="form-title">Добро пожаловать</p>
+    <div class="input-container">
+        <label>{{ form.username.label }}</label>
+        {{ form.username }}
+    </div>
+        <div class="input-container">
+        <label>{{ form.email.label }}</label>
+        {{ form.email }}
+    </div>
+    <div class="input-container">
+        <label>{{ form.password1.label }}</label>
+        {{ form.password1 }}
+    </div>
+        <div class="input-container">
+        <label>{{ form.password2.label }}</label>
+        {{ form.password2 }}
+    </div>
+    <button type="submit" class="submit">
+        Создать аккаунт
+    </button>
+    <p class="signup-link">
+        У меня есть аккаунт?
+        <a href="{% url 'login' %}">Войти</a>
+    </p>
+</form>
+</body>
+</html>

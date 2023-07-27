@@ -1,0 +1,35 @@
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="{% static "static/css/style.css" %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body class="body">
+<form class="form" method="POST">
+    {% csrf_token %}
+    <p class="form-title">Добро пожаловать</p>
+    <div class="input-container">
+        <label>{{ form.username.label }}</label>
+        {{ form.username }}
+        <span>
+          </span>
+    </div>
+    <div class="input-container">
+        <label>{{ form.password.label }}</label>
+        {{ form.password }}
+    </div>
+    <button type="submit" class="submit">
+        Войти
+    </button>
+
+    <p class="signup-link">
+        Нет аккаунта?
+        <a href="{% url 'register' %}">Регистрация</a>
+    </p>
+</form>
+</body>
+</html>

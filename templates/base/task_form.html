@@ -1,0 +1,31 @@
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static "static/css/style.css" %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="tasklist">
+    <h1>Запишите задачу</h1>
+    <form class="form" method="POST" action="">
+        {% csrf_token %}
+        <div class="input-container">
+            <label>{{ form.title.label }}</label>
+            {{ form.title }}
+        </div>
+        <div class="input-container">
+             <label>{{ form.description.label }}</label>
+            {{ form.description }}
+        </div>
+
+           <button type="submit" class="submit">
+        Сохранить
+    </button>
+    </form>
+</div>
+</body>
+</html>

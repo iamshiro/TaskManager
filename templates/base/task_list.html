@@ -1,0 +1,52 @@
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Задачи</title>
+    <link rel="stylesheet" href="{% static "static/css/style.css" %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet">
+
+</head>
+
+<header>
+    {% if request.user.is_authenticated %}
+        <p> Добро пожаловать, {{ request.user }}!  <i>{{count}}</i> задач</p>
+        <a href="{% url 'logout' %}">Выход</a>
+    {% else %}
+        <a href="{% url 'login' %}">Логин</a>
+    {% endif %}
+</header>
+
+<body>
+<div class="tasklist">
+    <h1>Список моих задач</h1>
+
+    <form method="GET">
+        <input class="search" placeholder="Поиск..." type="text" name="search-area" value="{{ search_input }}">
+        <input class="search-btn" type="submit" value="Поиск">
+
+    </form>
+    {% for task in tasks %}
+        <div class="task-card">
+            <div class="task-title">
+                <a href="{% url 'task' task.id %}">{{ task.title }}</a>
+            </div>
+            <div class="task-links">
+                <a class="yellow" href="{% url 'task-update' task.id %}">Редактировать</a>
+                <a class="red" href="{% url 'task-delete' task.id %}">Удалить</a>
+            </div>
+        </div>
+    {% empty %}
+        <h3>Здесь пока ничего нету...</h3>
+    {% endfor %}
+    <br>
+<button class="btn-shine">
+     <a href="{% url 'task-create' %}">Добавить задачу</a>
+</button>
+
+
+</div>
+</body>
+</html>
